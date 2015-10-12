@@ -17,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
 	IntentFilter mConnectIntentFilter;
 
 	final static String CHARGER_CONNECTED = "Charger is ** connected **";
-	final static String CHARGER_NOT_CONNECTED = "Charger is ** connected **";
+	final static String CHARGER_NOT_CONNECTED = "Charger is ** not connected **";
 
 
 	@Override
@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
 		} else {
 			powerTV.setText(CHARGER_NOT_CONNECTED);
 		}
+
 
 
 	}
