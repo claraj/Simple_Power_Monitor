@@ -67,7 +67,7 @@ public class MainActivity extends ActionBarActivity {
 		TextView batteryLevelTV = (TextView) findViewById(R.id.battery);
 
 		//So to remind us that this is a snapshot of the battery status, add the
-		//current date and time to the message. A new Date object is initialized to the time of it's creation.
+		//current date and time to the message. A new Date object is initialized to the date/time of its creation.
 
 		batteryLevelTV.setText("The battery level at " +  new Date() + " is " + batteryPercentage + "%");
 
