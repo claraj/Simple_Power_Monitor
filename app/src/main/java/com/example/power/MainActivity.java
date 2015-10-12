@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
 		mDisconnectIntentFilter = new IntentFilter(Intent.ACTION_POWER_DISCONNECTED);
 		mConnectIntentFilter = new IntentFilter(Intent.ACTION_POWER_CONNECTED);
 
-		//Determine current state so can display appropriate message when app starts (or device is rotated)
+		//Determine current charging state so can display appropriate message when app starts (or device is rotated)
 
 		TextView powerTV = (TextView) findViewById(R.id.power);
 
@@ -46,6 +47,23 @@ public class MainActivity extends ActionBarActivity {
 			powerTV.setText(CHARGER_NOT_CONNECTED);
 		}
 
+
+		//Calculate the current battery level, as a percentage
+		//The battery has a maximum level, which is obtained from BatteryManager.EXTRA_SCALE
+		//And the current level, from BatteryManager.EXTRA_LEVEL, which will be between 0 and the max
+		//NOTE that the following two method calls both return int values,
+		//but since we need to do math and deal with floating point, then store as a float to avoid rounding.
+		float maxLevel = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+		float level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+
+		//Use these two numbers to calculate a percentage value
+		int batteryPercentage = (int) (level / maxLevel  * 100);
+
+		//Display current battery in TextView. Also note that this is the percentage when this code
+		//runs - it won't update until onCreate runs again. If you need to continually monitor battery status,
+		//you'll need to keep reading these values from the batteryStatus.
+		TextView batteryLevelTV = (TextView) findViewById(R.id.battery);
+		batteryLevelTV.setText("The current battery level is " + batteryPercentage + "%");
 
 
 	}
