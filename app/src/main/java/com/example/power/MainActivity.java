@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.Date;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -63,7 +65,11 @@ public class MainActivity extends ActionBarActivity {
 		//runs - it won't update until onCreate runs again. If you need to continually monitor battery status,
 		//you'll need to keep reading these values from the batteryStatus.
 		TextView batteryLevelTV = (TextView) findViewById(R.id.battery);
-		batteryLevelTV.setText("The current battery level is " + batteryPercentage + "%");
+
+		//So to remind us that this is a snapshot of the battery status, add the
+		//current date and time to the message. A new Date object is initialized to the time of it's creation.
+
+		batteryLevelTV.setText("The battery level at " +  new Date() + " is " + batteryPercentage + "%");
 
 
 	}
