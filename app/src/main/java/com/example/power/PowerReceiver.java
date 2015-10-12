@@ -17,11 +17,11 @@ public class PowerReceiver extends BroadcastReceiver {
 		TextView powerTV = (TextView)activity.findViewById(R.id.power);
 
 		if (intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)) {
-			powerTV.setText(MainActivity.CHARGER_CONNECTED);
+			powerTV.setText(MainActivity.CHARGER_NOT_CONNECTED);
 		}
 
 		if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
-			powerTV.setText(MainActivity.CHARGER_NOT_CONNECTED);
+			powerTV.setText(MainActivity.CHARGER_CONNECTED);
 		}
 
 	}
